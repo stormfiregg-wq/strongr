@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="page-title">Новости — Strong Russia</title>
+<link rel="icon" href="assets/logo.png">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html"><img src="assets/logo.png" alt="Strong Russia"></a>
+    <nav class="nav">
+      <a href="index.html">Главная</a>
+      <a href="download.html">Скачать</a>
+      <a href="news.html" class="active">Новости</a>
+      <a data-discord-link target="_blank" rel="noopener">Discord</a>
+    </nav>
+    <button class="burger" aria-label="Меню">☰</button>
+  </div>
+</header>
+
+<div id="list-view">
+  <div class="page-head">
+    <div class="wrap">
+      <span class="eyebrow">Лента</span>
+      <h1>Новости проекта</h1>
+      <p>Обновления, наборы в администрацию, технические работы и всё, что важно знать игрокам Strong Russia.</p>
+    </div>
+  </div>
+  <section class="section">
+    <div class="wrap">
+      <div class="news-list" id="news-list">
+        <div class="empty-state">Загрузка новостей…</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div id="article-view" style="display:none;">
+  <article class="article">
+    <div class="wrap">
+      <a class="back-link" href="news.html">← Все новости</a>
+      <span class="eyebrow tagline" id="a-tag">Новость</span>
+      <h1 id="a-title"></h1>
+      <div class="article-meta" id="a-date"></div>
+      <div class="article-body" id="a-body"></div>
+    </div>
+  </article>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="fbrand">
+      <img src="assets/logo.png" alt="" style="height:26px;">
+      <span>© 2026 Strong Russia. Независимый CRMP-проект.</span>
+    </div>
+    <div class="flinks">
+      <a href="download.html">Скачать</a>
+      <a href="news.html">Новости</a>
+      <a data-discord-link target="_blank" rel="noopener">Discord</a>
+      <a href="admin.html">Админ</a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+(async function(){
+  const content = await SR.loadContent();
+  SR.applyLinks(content);
+  const items = SR.newsSorted(content);
+
+  const params = new URLSearchParams(location.search);
+  const id = params.get('id');
+
+  if(id){
+    const post = items.find(n => n.id === id);
+    document.getElementById('list-view').style.display = 'none';
+    const view = document.getElementById('article-view');
+    view.style.display = 'block';
+    if(!post){
+      view.innerHTML = '<div class="wrap" style="padding:60px 24px;"><a class="back-link" href="news.html">← Все новости</a><div class="empty-state">Новость не найдена.</div></div>';
+      return;
+    }
+    document.getElementById('page-title').textContent = post.title + ' — Strong Russia';
+    document.getElementById('a-tag').textContent = post.tag || 'Новость';
+    document.getElementById('a-title').textContent = post.title;
+    document.getElementById('a-date').textContent = SR.formatDate(post.date);
+    const bodyHtml = (post.body || post.excerpt || '')
+      .split(/\n{2,}/)
+      .map(p => `<p>${SR.escapeHtml(p)}</p>`)
+      .join('');
+    document.getElementById('a-body').innerHTML = bodyHtml;
+  }else{
+    SR.renderNewsRows(document.getElementById('news-list'), items);
+  }
+})();
+</script>
+</body>
+</html>

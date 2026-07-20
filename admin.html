@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Админ-панель — Strong Russia</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="assets/logo.png">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="admin-shell">
+
+<div id="login-screen" class="login-screen">
+  <div class="login-box">
+    <div class="brand"><img src="assets/logo.png" alt="Strong Russia" style="height:40px;"></div>
+    <h1>Админ-панель</h1>
+    <p class="sub">Введите пароль для доступа к управлению сайтом</p>
+    <div class="field">
+      <label for="pwd">Пароль</label>
+      <input type="password" id="pwd" autocomplete="current-password">
+    </div>
+    <div class="error-msg" id="err">Неверный пароль. Попробуйте ещё раз.</div>
+    <button class="btn btn-primary" style="width:100%;" id="login-btn">Войти</button>
+  </div>
+</div>
+
+<div id="dashboard" style="display:none;">
+  <div class="admin-topbar">
+    <div class="wrap">
+      <a class="brand" href="index.html"><img src="assets/logo.png" alt="Strong Russia" style="height:36px;"></a>
+      <div style="display:flex;gap:10px;align-items:center;">
+        <span class="hint">Правки сохраняются в этом браузере</span>
+        <button class="btn btn-ghost btn-sm" id="logout-btn">Выйти</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="admin-body">
+    <div class="wrap admin-grid">
+
+      <div>
+        <div class="panel">
+          <h2>Новости</h2>
+          <div id="news-form">
+            <input type="hidden" id="n-id">
+            <div class="field">
+              <label for="n-title">Заголовок</label>
+              <input id="n-title" placeholder="Например: Открытие сезона 2">
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+              <div class="field">
+                <label for="n-date">Дата</label>
+                <input type="date" id="n-date">
+              </div>
+              <div class="field">
+                <label for="n-tag">Метка</label>
+                <input id="n-tag" placeholder="Обновление / Набор / Тест">
+              </div>
+            </div>
+            <div class="field">
+              <label for="n-excerpt">Короткое описание (для карточек)</label>
+              <textarea id="n-excerpt" style="min-height:70px;"></textarea>
+            </div>
+            <div class="field">
+              <label for="n-body">Полный текст (для страницы новости)</label>
+              <textarea id="n-body"></textarea>
+            </div>
+            <div style="display:flex;gap:10px;">
+              <button class="btn btn-primary" id="save-news">Опубликовать</button>
+              <button class="btn btn-ghost" id="clear-form">Очистить форму</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h2>Опубликованные новости</h2>
+          <div id="news-admin-list"></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="panel">
+          <h2>Ссылки и настройки сайта</h2>
+          <div class="field">
+            <label for="s-download-url">Ссылка на скачивание лаунчера</label>
+            <input id="s-download-url" placeholder="https://...">
+          </div>
+          <div class="field">
+            <label for="s-download-label">Текст кнопки скачивания</label>
+            <input id="s-download-label" placeholder="Скачать лаунчер">
+          </div>
+          <div class="field">
+            <label for="s-download-size">Размер файла</label>
+            <input id="s-download-size" placeholder="≈ 850 МБ">
+          </div>
+          <div class="field">
+            <label for="s-discord-url">Ссылка на Discord</label>
+            <input id="s-discord-url" placeholder="https://discord.gg/...">
+          </div>
+          <div class="field">
+            <label for="s-tagline">Заголовок на главной</label>
+            <textarea id="s-tagline" style="min-height:60px;"></textarea>
+          </div>
+          <div class="field">
+            <label for="s-description">Описание проекта на главной</label>
+            <textarea id="s-description" style="min-height:80px;"></textarea>
+          </div>
+          <button class="btn btn-primary" id="save-settings">Сохранить настройки</button>
+        </div>
+
+        <div class="panel">
+          <h2>Публикация изменений</h2>
+          <p class="hint">
+            Сайт статический, поэтому изменения сначала сохраняются только в этом браузере (для предпросмотра).
+            Чтобы их увидели все посетители — нажмите «Скачать файл данных» и замените им
+            файл <code>data/content.json</code> на хостинге.
+          </p>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;">
+            <button class="btn btn-primary btn-sm" id="export-btn">Скачать файл данных</button>
+            <button class="btn btn-ghost btn-sm" id="import-btn">Загрузить файл данных</button>
+            <button class="btn btn-ghost btn-sm" id="reset-btn">Сбросить черновик</button>
+          </div>
+          <input type="file" id="import-file" accept="application/json" style="display:none;">
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="js/main.js"></script>
+<script src="js/admin-config.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>

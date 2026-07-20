@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Strong Russia — CRMP проект</title>
+<meta name="description" content="Strong Russia — сюжетный CRMP-проект. Скачивай лаунчер, читай новости и присоединяйся к сообществу в Discord.">
+<link rel="icon" href="assets/logo.png">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <img src="assets/logo.png" alt="Strong Russia">
+    </a>
+    <nav class="nav">
+      <a href="index.html" class="active">Главная</a>
+      <a href="download.html">Скачать</a>
+      <a href="news.html">Новости</a>
+      <a data-discord-link target="_blank" rel="noopener">Discord</a>
+    </nav>
+    <button class="burger" aria-label="Меню">☰</button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">CRMP · Открытый проект</span>
+      <h1>Криминальная Россия.<br><em>Твои правила</em> выживания.</h1>
+      <p class="lead" data-description>Strong Russia — сюжетный CRMP-проект с проработанной экономикой, фракциями и постоянным вайпом контента.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" data-download-link href="download.html">Скачать и играть</a>
+        <a class="btn btn-discord" data-discord-link target="_blank" rel="noopener">Discord-сервер</a>
+      </div>
+      <div class="meta-row">
+        <div><b>3</b>фракции на старте</div>
+        <div><b>18+</b>уникальных работ</div>
+        <div><b>24/7</b>стабильная работа проекта</div>
+      </div>
+    </div>
+    <div class="hero-art">
+      <img src="assets/logo.png" alt="Strong Russia — эмблема проекта">
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <h2>Почему Strong Russia</h2>
+        <p class="sub">Проект строится вокруг трёх вещей — честной экономики, живых фракций и постоянной поддержки.</p>
+      </div>
+    </div>
+    <div class="features">
+      <div class="feature">
+        <span class="num">Экономика</span>
+        <h3>Без доната на силу</h3>
+        <p>Оружие, транспорт и влияние зарабатываются игрой, а не платежом. Донат — только косметика.</p>
+      </div>
+      <div class="feature">
+        <span class="num">Фракции</span>
+        <h3>Живые структуры власти</h3>
+        <p>У каждой фракции свой сценарий развития, внутренняя иерархия и зона влияния на карте.</p>
+      </div>
+      <div class="feature">
+        <span class="num">Поддержка</span>
+        <h3>Администрация на связи</h3>
+        <p>Модерация и техподдержка отвечают в Discord. Баг-репорты разбираются в течение суток.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <h2>Новости проекта</h2>
+        <p class="sub">Обновления, наборы в администрацию и технические работы.</p>
+      </div>
+      <a class="btn btn-ghost btn-sm" href="news.html">Все новости</a>
+    </div>
+    <div class="news-grid" id="news-preview">
+      <div class="empty-state">Загрузка новостей…</div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <div>
+      <h2>Присоединяйся к сообществу</h2>
+      <p>Обсуждение фракций, набор в администрацию, техподдержка и живое общение — всё в нашем Discord.</p>
+    </div>
+    <a class="btn btn-primary" data-discord-link target="_blank" rel="noopener">Войти в Discord</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="fbrand">
+      <img src="assets/logo.png" alt="" style="height:26px;">
+      <span>© 2026 Strong Russia. Независимый CRMP-проект.</span>
+    </div>
+    <div class="flinks">
+      <a href="download.html">Скачать</a>
+      <a href="news.html">Новости</a>
+      <a data-discord-link target="_blank" rel="noopener">Discord</a>
+      <a href="admin.html">Админ</a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+(async function(){
+  const content = await SR.loadContent();
+  SR.applyLinks(content);
+  const items = SR.newsSorted(content).slice(0,3);
+  SR.renderNewsCards(document.getElementById('news-preview'), items);
+})();
+</script>
+</body>
+</html>

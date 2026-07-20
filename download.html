@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Скачать — Strong Russia</title>
+<link rel="icon" href="assets/logo.png">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html"><img src="assets/logo.png" alt="Strong Russia"></a>
+    <nav class="nav">
+      <a href="index.html">Главная</a>
+      <a href="download.html" class="active">Скачать</a>
+      <a href="news.html">Новости</a>
+      <a data-discord-link target="_blank" rel="noopener">Discord</a>
+    </nav>
+    <button class="burger" aria-label="Меню">☰</button>
+  </div>
+</header>
+
+<div class="page-head">
+  <div class="wrap">
+    <span class="eyebrow">Клиент проекта</span>
+    <h1>Скачать Strong Russia</h1>
+    <p>Один лаунчер — установка, обновления и запуск игры. Ниже — сам файл и краткая инструкция по установке.</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="wrap">
+    <div class="download-card">
+      <div>
+        <h2 data-download-label>Скачать лаунчер</h2>
+        <p data-download-size>≈ 850 МБ</p>
+      </div>
+      <a class="btn btn-primary" data-download-link href="#">Скачать сейчас</a>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <span class="num">1</span>
+        <h4>Скачайте лаунчер</h4>
+        <p>Нажмите «Скачать сейчас» и сохраните установочный файл.</p>
+      </div>
+      <div class="step">
+        <span class="num">2</span>
+        <h4>Установите и запустите</h4>
+        <p>Откройте файл, следуйте подсказкам установщика. Антивирус может запросить подтверждение.</p>
+      </div>
+      <div class="step">
+        <span class="num">3</span>
+        <h4>Войдите и играйте</h4>
+        <p>Авторизуйтесь через свой аккаунт Discord и подключайтесь к серверу.</p>
+      </div>
+    </div>
+
+    <div class="sysreq">
+      <table>
+        <tr><td>Операционная система</td><td>Windows 10 / 11 (64-бит)</td></tr>
+        <tr><td>Процессor</td><td>4 ядра, 2.5 ГГц и выше</td></tr>
+        <tr><td>Оперативная память</td><td>8 ГБ</td></tr>
+        <tr><td>Место на диске</td><td>от 3 ГБ свободного места</td></tr>
+        <tr><td>Интернет</td><td>стабильное соединение, от 5 Мбит/с</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <div>
+      <h2>Возникли проблемы с установкой?</h2>
+      <p>Команда техподдержки поможет разобраться в отдельном канале Discord-сервера.</p>
+    </div>
+    <a class="btn btn-discord" data-discord-link target="_blank" rel="noopener">Написать в поддержку</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="fbrand">
+      <img src="assets/logo.png" alt="" style="height:26px;">
+      <span>© 2026 Strong Russia. Независимый CRMP-проект.</span>
+    </div>
+    <div class="flinks">
+      <a href="download.html">Скачать</a>
+      <a href="news.html">Новости</a>
+      <a data-discord-link target="_blank" rel="noopener">Discord</a>
+      <a href="admin.html">Админ</a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+(async function(){
+  const content = await SR.loadContent();
+  SR.applyLinks(content);
+})();
+</script>
+</body>
+</html>
